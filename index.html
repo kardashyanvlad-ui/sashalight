@@ -14,7 +14,7 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #1d4ed8 100%);
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #404040 100%);
             color: #e0e0e0;
             min-height: 100vh;
             padding: 20px;
@@ -39,16 +39,22 @@
             height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid #800020;
-            box-shadow: 0 0 25px rgba(128, 0, 32, 0.7);
+            border: 3px solid #ffd1dc;
+            box-shadow: 0 0 30px rgba(255, 209, 220, 0.5);
             margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .avatar:hover {
+            box-shadow: 0 0 40px rgba(255, 209, 220, 0.8);
+            transform: scale(1.05);
         }
 
         h1 {
-            color: #800020;
+            color: #ffd1dc;
             font-size: 28px;
             margin-bottom: 5px;
-            text-shadow: 0 0 15px rgba(128, 0, 32, 0.8);
+            text-shadow: 0 0 20px rgba(255, 209, 220, 0.7);
             letter-spacing: 1px;
             font-weight: bold;
         }
@@ -62,12 +68,12 @@
 
         /* Блоки с текстом */
         .text-block {
-            background: rgba(30, 30, 30, 0.7);
-            padding: 20px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(128, 0, 32, 0.3);
-            transition: all 0.4s ease;
-            backdrop-filter: blur(12px);
+            background: rgba(40, 40, 40, 0.3);
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 15px;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            backdrop-filter: blur(15px);
             position: relative;
             overflow: hidden;
         }
@@ -79,8 +85,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(128, 0, 32, 0.2), transparent);
-            transition: left 0.6s ease;
+            background: linear-gradient(90deg, transparent, rgba(255, 209, 220, 0.15), transparent);
+            transition: left 0.7s ease;
         }
 
         .text-block:hover::before {
@@ -88,54 +94,76 @@
         }
 
         .text-block:hover {
-            background: rgba(40, 40, 40, 0.8);
-            box-shadow: 0 0 30px rgba(128, 0, 32, 0.4);
-            transform: translateY(-3px);
-            border-color: #800020;
+            background: rgba(50, 50, 50, 0.5);
+            box-shadow: 0 0 50px rgba(255, 209, 220, 0.4);
+            transform: translateY(-12px) scale(1.05);
+        }
+
+        .text-block:hover h2,
+        .text-block:hover p {
+            transform: scale(1.05);
         }
 
         h2 {
-            color: #800020;
-            margin-bottom: 12px;
+            color: #ffd1dc;
+            margin-bottom: 15px;
             font-size: 20px;
-            text-shadow: 0 0 10px rgba(128, 0, 32, 0.6);
+            text-shadow: 0 0 15px rgba(255, 209, 220, 0.6);
+            transition: transform 0.5s ease;
         }
 
-        /* Галерея */
-        .gallery {
+        .text-block p {
+            transition: transform 0.5s ease;
+        }
+
+        /* Коллаж из 9 фото с косыми линиями */
+        .collage {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 20px;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 4px;
+            margin-bottom: 25px;
+            transform: rotate(-2deg);
+            padding: 10px;
+            background: rgba(30, 30, 30, 0.3);
+            border-radius: 10px;
         }
 
-        .gallery-item {
+        .collage-item {
             position: relative;
             overflow: hidden;
-            aspect-ratio: 3/4;
+            aspect-ratio: 1;
             cursor: pointer;
-            transform: scale(0.95);
-            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
-            border: 2px solid transparent;
+            transition: all 0.4s ease;
+            transform: rotate(var(--rotate, 0deg));
+            filter: grayscale(0.3);
+            z-index: 1;
         }
 
-        .gallery-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 35px rgba(128, 0, 32, 0.6);
-            border-color: #800020;
-            z-index: 2;
+        .collage-item:nth-child(odd) {
+            --rotate: 1deg;
         }
 
-        .gallery-img {
+        .collage-item:nth-child(even) {
+            --rotate: -1deg;
+        }
+
+        .collage-item:hover {
+            transform: rotate(0deg) scale(2.5);
+            filter: grayscale(0);
+            z-index: 10;
+            box-shadow: 0 0 30px rgba(255, 209, 220, 0.6);
+        }
+
+        .collage-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.7s ease;
+            transition: transform 0.6s ease;
         }
 
-        .gallery-item:hover .gallery-img {
-            transform: scale(1.15);
+        .collage-item:hover .collage-img {
+            transform: scale(1.1);
         }
 
         /* Кнопки с эффектом стекла */
@@ -150,16 +178,17 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
-            padding: 16px 25px;
-            background: rgba(128, 0, 32, 0.15);
+            padding: 18px 25px;
+            background: rgba(255, 209, 220, 0.1);
             color: white;
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(128, 0, 32, 0.5);
-            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(12px);
+            border-radius: 12px;
             position: relative;
             overflow: hidden;
+            border: none;
         }
 
         .btn::before {
@@ -169,8 +198,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(128, 0, 32, 0.3), transparent);
-            transition: left 0.6s ease;
+            background: linear-gradient(90deg, transparent, rgba(255, 209, 220, 0.2), transparent);
+            transition: left 0.7s ease;
         }
 
         .btn:hover::before {
@@ -178,10 +207,9 @@
         }
 
         .btn:hover {
-            background: rgba(128, 0, 32, 0.25);
-            box-shadow: 0 0 25px rgba(128, 0, 32, 0.5);
-            transform: translateY(-2px);
-            border-color: #800020;
+            background: rgba(255, 209, 220, 0.15);
+            box-shadow: 0 0 35px rgba(255, 209, 220, 0.4);
+            transform: translateY(-5px);
         }
 
         /* Соцсети */
@@ -194,23 +222,23 @@
         }
 
         .social a {
-            color: #800020;
+            color: #ffd1dc;
             font-size: 26px;
-            transition: all 0.3s ease;
-            text-shadow: 0 0 10px rgba(128, 0, 32, 0.5);
+            transition: all 0.4s ease;
+            text-shadow: 0 0 15px rgba(255, 209, 220, 0.5);
         }
 
         .social a:hover {
-            color: #ffd700;
-            text-shadow: 0 0 20px rgba(128, 0, 32, 0.8);
-            transform: translateY(-3px) scale(1.2);
+            color: #ffffff;
+            text-shadow: 0 0 30px rgba(255, 209, 220, 0.9);
+            transform: translateY(-5px) scale(1.3);
         }
 
         /* Анимации */
         @keyframes fadeIn {
             from { 
                 opacity: 0; 
-                transform: translateY(25px); 
+                transform: translateY(30px); 
             }
             to { 
                 opacity: 1; 
@@ -219,7 +247,7 @@
         }
 
         .fade-in {
-            animation: fadeIn 0.8s ease-in-out forwards;
+            animation: fadeIn 0.9s ease-in-out forwards;
             opacity: 0;
         }
 
@@ -229,9 +257,13 @@
                 padding: 15px;
             }
             
-            .gallery {
-                grid-template-columns: 1fr;
-                gap: 12px;
+            .collage {
+                transform: rotate(-1deg);
+                gap: 3px;
+            }
+            
+            .collage-item:hover {
+                transform: rotate(0deg) scale(2.2);
             }
             
             .avatar {
@@ -250,6 +282,14 @@
             .social a {
                 font-size: 24px;
             }
+            
+            .text-block {
+                padding: 20px;
+            }
+            
+            .text-block:hover {
+                transform: translateY(-8px) scale(1.03);
+            }
         }
 
         /* Декоративные элементы */
@@ -257,13 +297,13 @@
             position: fixed;
             pointer-events: none;
             z-index: -1;
-            opacity: 0.1;
+            opacity: 0.05;
         }
 
         .decoration.circle {
             width: 200px;
             height: 200px;
-            border: 2px solid #800020;
+            border: 2px solid #ffd1dc;
             border-radius: 50%;
             top: -100px;
             right: -100px;
@@ -272,7 +312,7 @@
         .decoration.square {
             width: 150px;
             height: 150px;
-            border: 2px solid #800020;
+            border: 2px solid #ffd1dc;
             bottom: -75px;
             left: -75px;
             transform: rotate(45deg);
@@ -304,21 +344,36 @@
             <p>• Индивидуальная съемка<br>• Love Story<br>• Прогулка в стиле lifestyle<br>• Студийная съемка<br>• Подарочные сертификаты</p>
         </div>
 
-        <!-- Галерея -->
+        <!-- Галерея-коллаж -->
         <div class="text-block fade-in" style="animation-delay: 0.6s;">
             <h2><i class="fas fa-images"></i> Мои работы</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1554080353-321e452ccf19?w=300&h=400&fit=crop" alt="Работа 1" class="gallery-img">
+            <div class="collage">
+                <div class="collage-item">
+                    <img src="https://images.unsplash.com/photo-1554080353-321e452ccf19?w=200&h=200&fit=crop" alt="Работа 1" class="collage-img">
                 </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1516726817505-5f4c1a05f5a5?w=300&h=400&fit=crop" alt="Работа 2" class="gallery-img">
+                <div class="collage-item">
+                    <img src="https://images.unsplash.com/photo-1516726817505-5f4c1a05f5a5?w=200&h=200&fit=crop" alt="Работа 2" class="collage-img">
                 </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300&h=400&fit=crop" alt="Работа 3" class="gallery-img">
+                <div class="collage-item">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=200&h=200&fit=crop" alt="Работа 3" class="collage-img">
                 </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=300&h=400&fit=crop" alt="Работа 4" class="gallery-img">
+                <div class="collage-item">
+                    <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=200&h=200&fit=crop" alt="Работа 4" class="collage-img">
+                </div>
+                <div class="collage-item">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop" alt="Работа 5" class="collage-img">
+                </div>
+                <div class="collage-item">
+                    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200&h=200&fit=crop" alt="Работа 6" class="collage-img">
+                </div>
+                <div class="collage-item">
+                    <img src="https://images.unsplash.com/photo-1548449112-96a38a643324?w=200&h=200&fit=crop" alt="Работа 7" class="collage-img">
+                </div>
+                <div class="collage-item">
+                    <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=200&h=200&fit=crop" alt="Работа 8" class="collage-img">
+                </div>
+                <div class="collage-item">
+                    <img src="https://images.unsplash.com/photo-1545912452-8aea7e25a3d3?w=200&h=200&fit=crop" alt="Работа 9" class="collage-img">
                 </div>
             </div>
         </div>
@@ -353,7 +408,7 @@
             const elements = document.querySelectorAll('.fade-in');
             elements.forEach((el, index) => {
                 setTimeout(() => {
-                    el.style.animation = `fadeIn 0.8s ease-in-out ${index * 0.2}s forwards`;
+                    el.style.animation = `fadeIn 0.9s ease-in-out ${index * 0.2}s forwards`;
                 }, 100);
             });
         });
