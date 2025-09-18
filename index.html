@@ -14,7 +14,7 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #1d4ed8 100%);
             color: #e0e0e0;
             min-height: 100vh;
             padding: 20px;
@@ -39,46 +39,66 @@
             height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid #00b4d8;
-            box-shadow: 0 0 20px rgba(0, 180, 216, 0.4);
+            border: 3px solid #800020;
+            box-shadow: 0 0 25px rgba(128, 0, 32, 0.7);
             margin-bottom: 15px;
         }
 
         h1 {
-            color: #00b4d8;
+            color: #800020;
             font-size: 28px;
             margin-bottom: 5px;
-            text-shadow: 0 0 10px rgba(0, 180, 216, 0.7);
+            text-shadow: 0 0 15px rgba(128, 0, 32, 0.8);
             letter-spacing: 1px;
+            font-weight: bold;
         }
 
         .tagline {
-            color: #b0b0b0;
+            color: #d1d5db;
             font-size: 16px;
             font-style: italic;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
 
         /* Блоки с текстом */
         .text-block {
-            background: rgba(40, 40, 40, 0.8);
+            background: rgba(30, 30, 30, 0.7);
             padding: 20px;
-            border-radius: 12px;
             margin-bottom: 20px;
-            border-left: 3px solid #00b4d8;
+            border: 1px solid rgba(128, 0, 32, 0.3);
             transition: all 0.4s ease;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .text-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(128, 0, 32, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .text-block:hover::before {
+            left: 100%;
         }
 
         .text-block:hover {
-            background: rgba(50, 50, 50, 0.9);
-            box-shadow: 0 0 25px rgba(0, 180, 216, 0.3);
-            transform: translateY(-2px);
+            background: rgba(40, 40, 40, 0.8);
+            box-shadow: 0 0 30px rgba(128, 0, 32, 0.4);
+            transform: translateY(-3px);
+            border-color: #800020;
         }
 
         h2 {
-            color: #00b4d8;
-            margin-bottom: 10px;
+            color: #800020;
+            margin-bottom: 12px;
             font-size: 20px;
+            text-shadow: 0 0 10px rgba(128, 0, 32, 0.6);
         }
 
         /* Галерея */
@@ -86,23 +106,24 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .gallery-item {
             position: relative;
-            border-radius: 12px;
             overflow: hidden;
             aspect-ratio: 3/4;
             cursor: pointer;
             transform: scale(0.95);
             transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+            border: 2px solid transparent;
         }
 
         .gallery-item:hover {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 0 30px rgba(0, 180, 216, 0.5);
+            transform: scale(1.05);
+            box-shadow: 0 0 35px rgba(128, 0, 32, 0.6);
+            border-color: #800020;
             z-index: 2;
         }
 
@@ -114,10 +135,10 @@
         }
 
         .gallery-item:hover .gallery-img {
-            transform: scale(1.1);
+            transform: scale(1.15);
         }
 
-        /* Кнопки */
+        /* Кнопки с эффектом стекла */
         .links {
             display: flex;
             flex-direction: column;
@@ -128,53 +149,78 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            padding: 15px 25px;
-            background: linear-gradient(135deg, #0077b6 0%, #00b4d8 100%);
+            gap: 12px;
+            padding: 16px 25px;
+            background: rgba(128, 0, 32, 0.15);
             color: white;
             text-decoration: none;
-            border-radius: 50px;
             font-weight: 500;
             transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
+            border: 2px solid rgba(128, 0, 32, 0.5);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(128, 0, 32, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 180, 216, 0.4);
-            background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
+            background: rgba(128, 0, 32, 0.25);
+            box-shadow: 0 0 25px rgba(128, 0, 32, 0.5);
+            transform: translateY(-2px);
+            border-color: #800020;
         }
 
         /* Соцсети */
         .social {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 25px;
             margin-top: 30px;
             padding: 20px;
         }
 
         .social a {
-            color: #00b4d8;
-            font-size: 24px;
+            color: #800020;
+            font-size: 26px;
             transition: all 0.3s ease;
+            text-shadow: 0 0 10px rgba(128, 0, 32, 0.5);
         }
 
         .social a:hover {
-            color: #ffffff;
-            text-shadow: 0 0 15px rgba(0, 180, 216, 0.8);
-            transform: translateY(-3px);
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(128, 0, 32, 0.8);
+            transform: translateY(-3px) scale(1.2);
         }
 
         /* Анимации */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { 
+                opacity: 0; 
+                transform: translateY(25px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
         }
 
         .fade-in {
-            animation: fadeIn 0.8s ease-in-out;
+            animation: fadeIn 0.8s ease-in-out forwards;
+            opacity: 0;
         }
 
         /* Адаптивность */
@@ -196,6 +242,14 @@
             h1 {
                 font-size: 24px;
             }
+            
+            .social {
+                gap: 20px;
+            }
+            
+            .social a {
+                font-size: 24px;
+            }
         }
 
         /* Декоративные элементы */
@@ -203,12 +257,13 @@
             position: fixed;
             pointer-events: none;
             z-index: -1;
+            opacity: 0.1;
         }
 
         .decoration.circle {
             width: 200px;
             height: 200px;
-            border: 2px solid rgba(0, 180, 216, 0.1);
+            border: 2px solid #800020;
             border-radius: 50%;
             top: -100px;
             right: -100px;
@@ -217,7 +272,7 @@
         .decoration.square {
             width: 150px;
             height: 150px;
-            border: 2px solid rgba(0, 180, 216, 0.1);
+            border: 2px solid #800020;
             bottom: -75px;
             left: -75px;
             transform: rotate(45deg);
@@ -268,21 +323,24 @@
             </div>
         </div>
 
+        <!-- Условия съемки -->
+        <div class="text-block fade-in" style="animation-delay: 0.8s;">
+            <h2><i class="fas fa-clipboard-list"></i> Условия съемки</h2>
+            <p>• Предоплата 30% для бронирования даты<br>• Съемка длится 2-3 часа<br>• 30+ обработанных фото<br>• Срок обработки: 14 дней<br>• Перенос за 3 дня бесплатно</p>
+        </div>
+
         <!-- Кнопки действий -->
-        <div class="links fade-in" style="animation-delay: 0.8s;">
-            <a href="https://wa.me/79001234567" class="btn">
-                <i class="fab fa-whatsapp"></i> Написать в WhatsApp
-            </a>
+        <div class="links fade-in" style="animation-delay: 1.0s;">
             <a href="https://t.me/annaphoto" class="btn">
-                <i class="fab fa-telegram"></i> Написать в Telegram
+                <i class="fab fa-telegram"></i> Записаться на съемку
             </a>
-            <a href="mailto:anna@photo.ru" class="btn">
-                <i class="fas fa-envelope"></i> Написать на почту
+            <a href="https://instagram.com/anna_photo" class="btn">
+                <i class="fab fa-instagram"></i> Посмотреть больше работ
             </a>
         </div>
 
         <!-- Соцсети -->
-        <div class="social fade-in" style="animation-delay: 1s;">
+        <div class="social fade-in" style="animation-delay: 1.2s;">
             <a href="https://instagram.com/anna_photo" target="_blank"><i class="fab fa-instagram"></i></a>
             <a href="https://vk.com/anna_photo" target="_blank"><i class="fab fa-vk"></i></a>
             <a href="https://t.me/annaphoto" target="_blank"><i class="fab fa-telegram"></i></a>
@@ -290,15 +348,17 @@
     </div>
 
     <script>
-        // Дополнительная анимация при загрузке
+        // Анимация появления элементов
         document.addEventListener('DOMContentLoaded', function() {
             const elements = document.querySelectorAll('.fade-in');
             elements.forEach((el, index) => {
-                el.style.animationDelay = `${index * 0.2}s`;
+                setTimeout(() => {
+                    el.style.animation = `fadeIn 0.8s ease-in-out ${index * 0.2}s forwards`;
+                }, 100);
             });
         });
 
-        // Плавная прокрутка для якорей
+        // Плавная прокрутка
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
